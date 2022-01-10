@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/sandy.css')}}">
+  <title>Landing Page</title>
+</head>
+
+<body>
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled text-capitalize">{{value.nama}}</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <br>
+
+  <div class="container">
+    <h1 class="bg-dark text-white text-center">Unimal Linux Enthusiast</h1>
+    <p class="lead">Unimal Linux Enthusiast adalah sebuah komunitas linux di dalam ruang lingkup Kampus Univeritas Malikussaleh</p>
+  </div>
+
+  <figure class="text-center">
+    <blockquote class="blockquote">
+      <p>A well-known quote, contained in a blockquote element.</p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+      Someone famous in <cite title="Source Title">Source Title</cite>
+    </figcaption>
+  </figure>
+
+  <a href="/message/{{hashing}}">send message</a>
+
+
+  {%for i in data%}
+      {% if i != "None" %}
+        <a href="/delmessage/{{i}}">
+          <br><br>
+          {{i}}
+        </a>
+      {%endif%}
+  {%endfor%}
+
+
+
+
+
+
+
+  <script src="{{url_for('static',filename='js/bootstrap.js')}}"></script>
+
+</body>
+
+</html>

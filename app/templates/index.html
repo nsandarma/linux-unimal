@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #EBCB8B;
+        }
+    </style>
+    <title>HOME</title>
+</head>
+<body>
+    <h1>Welcome to website !!!</h1>
+
+    <table border="2px">
+        <tr>
+            <th>role</th>
+            <th>username</th>
+            <th>password</th>
+            <th>aksi</th>
+        </tr>
+        {%for i in value%}
+        <tr>
+            {%if i.role == 1%}
+                <!-- <td>Admin</td>
+                <td>{{i.username}}</td>
+                <td>*****************</td> -->
+            {%else%}
+                <td>User</td>
+                <td>{{i.username}}</td>
+                <td>{{i.password}}</td>
+                <td><a href="delete/{{i.id}}">Delete</a></td>
+            {%endif%}
+        </tr>
+
+        {%endfor%}
+
+    </table>
+
+    <p>{{ha}}</p>
+</body>
+</html>

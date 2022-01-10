@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.css')}}">
+    <title>Landing Page</title>
+</head>
+
+<body>
+
+    <br>
+    <div class="container">
+        <div class="row">
+            <h1 class="display-1 text-center ">LOGIN</h1>
+            <p class="lead"> <br>
+                Anda harus Login dulu yaa !
+            </p>
+            {% if data %}
+                <p class="text-danger">{{data}}</p>
+            {%endif%}
+            <form action="" method="post">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="username" placeholder="aqhsalid" name="username">
+                    <label for="username">Username</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                        name="password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <br>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-dark" type="submit">LOG IN</button>
+                    
+                </div>
+                
+                <div class="d-grid gap-2">
+                    <a class="btn btn-warning" href="register">Register</a>
+                    <a href="/register"></a>
+                </div>
+            </form>
+
+            <div class="accordion" id="accordionExample">
+                <br>
+                <div class="accordion-item bg-light">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Apa itu FOSS ?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>FOSS merupakan lisensi bebas yang memberikan pengguna hak untuk menggunakan,
+                                menyalin, mempelajari, mengubah, dan memperbaiki desain melalui ketersediaan dari kode
+                                sumber.
+                                <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-light">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Mengapa Harus FOSS ?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            FOSS.</strong> memiliki kemampuan dalam menciptakan komunitas-komunitas. Hal ini penting untuk
+                            menghasilkan lebih banyak orang yang mengerti teknologi. Hal ini memicu orang untuk
+                            meriset karena sifat sosialnya. (Orang lebih suka melakukan riset/ngoprek secara
+                            bersama-sama daripada sendiri )
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-light">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Accordion Item #3
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            This is the third item's accordion body.</strong> It is hidden by default, until the
+                            collapse plugin adds the appropriate classes that we use to style each element. These
+                            classes control the overall appearance, as well as the showing and hiding via CSS
+                            transitions. You can modify any of this with custom CSS or overriding our default variables.
+                            It's also worth noting that just about any HTML can go within the
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="{{url_for('static',filename='js/bootstrap.js')}}"></script>
+
+</body>
+
+</html>

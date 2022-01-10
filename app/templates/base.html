@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.css')}}">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="layout layout-nav-side">
+        <div class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+
+            <a class="navbar-brand" href="{% url 'base:index' %}">
+                <img alt="Pipeline" src="{% static 'assets/img/logo-white.png' %}" class="avatar avatar-lg" />
+            </a>
+
+            <div class="d-flex align-items-center">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse"
+                    aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                {% if user.is_authenticated %}
+                <div class="d-block d-lg-none ml-2">
+                    <div class="dropdown">
+                        <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ user|avatar_img:35 }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            {% include 'base/_user_menu.html' %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <div class="collapse navbar-collapse flex-column" id="navbar-collapse">
+                <ul class="navbar-nav d-lg-block">
+                    {% if show_roadmaps %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'roadmaps:list' %}"><i
+                                class="material-icons-x mr-1 text-info">near_me</i>
+                            Roadmaps <span class="badge badge-warning">new</span></a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'projects:list' %}"><i
+                                class="material-icons-x mr-1 text-info">extension</i>
+                            Tantangan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'base:classrooms' %}"><i
+                                class="material-icons-x mr-1 text-info">category</i> Kelas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'coders:list' %}"><i
+                                class="material-icons-x mr-1 text-info">people</i>
+                            Koders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'base:pro' %}"><i
+                                class="material-icons-x mr-1 text-info">spa</i>
+                            PRO</a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="d-none d-lg-block w-100">
+                    <ul class="nav nav-small flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'base:tentang' %}">Tentang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ statuspage_url }}" target="_blank"
+                                rel="noopener noreferrer">Status</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/upkoding/upkoding" target="_blank"
+                                rel="noopener noreferrer">GitHub</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'base:contributors' %}">Kontributor</a>
+                        </li>
+                        {% if user.is_authenticated and user.is_staff %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <hr>
+                </div>
+                {% if not user.is_authenticated %}
+                <div class="d-block w-100">
+                    <div class="mt-2">
+                        <a href="{% url 'account:login' %}" class="btn btn-info btn-block">
+                            Login / Register
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            {% if user.is_authenticated %}
+            <div class="d-none d-lg-block">
+                <div class="dropup">
+                    <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ user|avatar_img:35 }}
+                    </a>
+                    <div class="dropdown-menu">
+                        {% include 'base/_user_menu.html' %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="main-container {% block main_container_classes %}{% endblock %}">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
+
+    <script src="{{url_for('static',filename='js/bootstrap.js')}}"></script>
+
+
+    
+</body>
+</html>
