@@ -7,7 +7,7 @@ from datetime import timedelta
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'fasisme123'
 # app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///user.db"
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://wupncvuwdmjpsq:f48a01be5ed9a99b046cf7ef517bc832eb0abc9725b3d6b1f151b1b77aa156b5@ec2-3-224-157-224.compute-1.amazonaws.com:5432/d1ntjkfg5kgj8n"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://zpmcpkdjdiijyz:75f91ce972f4daf08ddedb62010cb87d1f7543064c19d0ba1c9520c18340b2cd@ec2-107-20-24-247.compute-1.amazonaws.com:5432/d1vn30f8o03smk"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 
