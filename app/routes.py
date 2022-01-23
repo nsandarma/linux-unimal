@@ -80,8 +80,8 @@ def register():
                     db.session.add(q)
                     db.session.commit()
                     return redirect('/login')
-            except:
-                return f'username yang anda masukkan sudah terdaftar'
+            except Exception as e:
+                return f'error {e}'
 
     return render_template('register.html')
 
