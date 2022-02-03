@@ -1,5 +1,7 @@
 import json
+from pickle import GLOBAL
 from re import M
+from markupsafe import re
 from sqlalchemy.orm import query
 from app import app,render_template,request,db,User,login,login_required,login_user,logout_user,url_for,redirect,session
 from werkzeug.security import generate_password_hash,check_password_hash
@@ -13,19 +15,20 @@ def load_user(user_id):
 @app.route('/')
 @login_required
 def home():
-    if session.get('key'):
-        data = {'nama':'admin'}
-    else:
-        data = {'nama':'user'}
-    
     ha = session.get("hash")
     user = User.query.filter_by(username=ha).first()
-    message = json.loads(user.content)
+    if session.get('key'):
+        data = {'nama':'admin'}
+        message = []
+    else:
+        data = {'nama':'user'}
+        message = json.loads(user.content)
     return render_template("landing.html",value=data,hashing=ha,data=message)
 
 @app.route('/login',methods=['GET','POST'])
 def login():
     session.clear()
+    lead = "anda harus login dulu ya"
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -45,11 +48,11 @@ def login():
                         return redirect('/')
                 else:
                     a = "Username atau password salah ! "
-                    return render_template('login.html',data = a)
+                    return render_template('login.html',data = a,i =lead)
             except Exception as e:
                 a = "Username atau password salah ! "
-                return render_template('login.html',data = a)
-    return render_template('login.html')
+                return render_template('login.html',data = a,i=lead)
+    return render_template('login.html',i = lead)
 @app.route('/index')
 @login_required
 def index():
@@ -105,7 +108,8 @@ def delete(id):
 def logout():
     logout_user()
     session.clear()
-    return redirect('/')
+    lead = "anda sudah keluar ! "
+    return render_template('login.html',i = lead)
 
 @app.route('/message/<string:hashing>',methods=["GET","POST"])
 def send_message(hashing):
@@ -137,15 +141,19 @@ def del_message(message):
     content.remove(message)
     q.content = json.dumps(content)
     db.session.commit()
-    return redirect('/')
+    return redirect('/message')
 
 @app.route('/message/')
 @login_required
 def message():
-    ha = session.get('hash')
-    q = User.query.filter_by(username=ha).first()
-    content = json.loads(q.content)
-    return render_template('template/table_message.html',message=content)
+    try :
+        ha = session.get('hash')
+        q = User.query.filter_by(username=ha).first()
+        content = json.loads(q.content)
+        return render_template('template/table_message.html',message=content)
+    except :
+        
+        return "Nothing page ! Sorry :)"
 
 
 

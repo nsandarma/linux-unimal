@@ -1,0 +1,1 @@
+lead = Unimal linux enthusiast adalah komunitas linux di dalam ruang lingkup unimal

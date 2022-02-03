@@ -10,12 +10,12 @@
   <title>Landing Page</title>
 </head>
 
-<body>
+<body class="bg-light ">
 
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="https://unimal.ac.id/" target="_blank">Unimal</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
         aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -26,7 +26,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login">Login</a>
+            <a class="nav-link" href="logout">Logout</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled text-capitalize">{{value.nama}}</a>
@@ -41,31 +41,51 @@
   </nav>
   <br>
 
-  <div class="container">
-    <h1 class="bg-dark text-white text-center">Unimal Linux Enthusiast</h1>
-    <p class="lead">Unimal Linux Enthusiast adalah sebuah komunitas linux di dalam ruang lingkup Kampus Univeritas Malikussaleh</p>
+  <div class="container container-sm bg-white">
+    <div class="row">
+      <h1 class="bg-dark text-center text-white">Unimal Linux Enthusiast</h1>
+      <div class="col">
+        <img src="{{url_for('static',filename='content/keep_calm.jpeg')}}" alt="Not Found">
+      </div>
+
+      <div class="col">
+        <div class="card " style="width: 18rem;">
+          <img src="{{url_for('static',filename='content/Linus-Torvalds-2012.jpg')}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Linus Torvalds</h5>
+            <p class="card-text lead">A computer is like air conditioning - it becomes useless when you open Windows</p>
+            <a href="https://linuxtorvalds.com/" class="btn btn-dark">Linus</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card bg" style="width: 18rem;">
+          <img src="{{url_for('static',filename='content/richard.jpeg')}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Richard Stallman</h5>
+            <p class="card-text lead">I did write some code in Java once,but that was the island in Indonesia</p>
+            <a href="https://stallman.org/" class="btn btn-dark">Stallman</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th class="text-center">Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for i in data%}
+        <tr>
+          <td class="text-center">{{i}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 
-  <figure class="text-center">
-    <blockquote class="blockquote">
-      <p>A well-known quote, contained in a blockquote element.</p>
-    </blockquote>
-    <figcaption class="blockquote-footer">
-      Someone famous in <cite title="Source Title">Source Title</cite>
-    </figcaption>
-  </figure>
 
-  <a href="/message/{{hashing}}">send message</a>
-
-
-  {%for i in data%}
-      {% if i != "None" %}
-        <a href="/delmessage/{{i}}">
-          <br><br>
-          {{i}}
-        </a>
-      {%endif%}
-  {%endfor%}
 
 
 
