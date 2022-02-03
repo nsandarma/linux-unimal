@@ -1,4 +1,7 @@
 app/__pycache__
 app/user.db
 env/
+
+__init__.py
 tes.py
+
