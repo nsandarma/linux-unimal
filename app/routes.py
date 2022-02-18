@@ -1,10 +1,7 @@
 import json
-from pickle import GLOBAL
-from re import M
-from markupsafe import re
-from sqlalchemy.orm import query
-from app import app,render_template,request,db,User,login,login_required,login_user,logout_user,url_for,redirect,session
+from app import app,render_template,request,db,User,login,login_required,login_user,logout_user,url_for,redirect,session,get_data
 from werkzeug.security import generate_password_hash,check_password_hash
+from time import strftime
 
 
 @login.user_loader
@@ -19,11 +16,11 @@ def home():
     user = User.query.filter_by(username=ha).first()
     if session.get('key'):
         data = {'nama':'admin'}
-        message = []
+        message = []    
     else:
         data = {'nama':'user'}
         message = json.loads(user.content)
-    return render_template("landing.html",value=data,hashing=ha,data=message)
+    return render_template("landing.html",value=data,hashing=ha,data=message,covid=get_data())
 
 @app.route('/login',methods=['GET','POST'])
 def login():
@@ -119,12 +116,16 @@ def send_message(hashing):
         return f"Not Working or username not detected !! {a}"
     else:
         try :
-            if request.method == 'POST':
+            if request.method == 'POST' :
                 message = request.form['message']
-                user = User.query.filter_by(username=hashing).first()
-                v = json.loads(user.content)
-                v.append(message)
-                user.content = json.dumps(v)
+                v = json.loads(a.content)
+                date = strftime("%Y-%m-%d %H:%M:%S")
+                user = session.get('hash')
+                if user == None :
+                    user = "anonymous"
+                isi = {'date': date,'message':message,'pengirim':session.get('hash')}
+                v.append(isi)
+                a.content = json.dumps(v)
                 db.session.commit()
                 return render_template('template/form_message.html')
             
@@ -155,6 +156,14 @@ def message():
         
         return "Nothing page ! Sorry :)"
 
+@app.route('/test')
+def tes():
+    q = User.query.filter_by(username='sandy').first()
+    
+    try:
+        return f"{q.content}"
+    except Exception as e:
+        return f"{e}"
 
 
     

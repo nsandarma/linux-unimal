@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>table Message</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.css')}}">
+    <title>Table Message</title>
 </head>
+
 <body>
 
-    <table border="1">
-        <tr>
-            <th>Message</th>
-            <th>aksi</th>
-        </tr>
-        {% for i in message %}
-        <tr>
-            <td>{{i}}</td>
-            <td><a href="/delmessage/{{i}}">delete</a></td>
-        </tr>
-        {%endfor%}
-    </table>
-    
+    <div class="container">
+        <div class="row">
+            <div class="row">
+                <table class="table">
+                    <thead class="table-warning">
+                        <tr>
+                            <th class="text-center">Data</th>
+                            <th class="text-center">Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for i in message%}
+                        <tr>
+                            <td class="text-center">{{i.date}}</td>
+                            <td class="text-center">{{i.message}}</td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
 </body>
+
 </html>

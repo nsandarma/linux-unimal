@@ -1,5 +1,7 @@
-from enum import unique
 from app import db,UserMixin
+import requests as req
+import json as js
+
 
 class User(db.Model,UserMixin):
     __tablename__ = 'user'
@@ -14,10 +16,7 @@ class User(db.Model,UserMixin):
             return f'<Role = admin>'
         else:
             return f'Role = user>'
-# class Message(db.Model):
-#     __tablename__ = 'message'
-#     id = db.Column(db.Integer,primary_key=True)
-#     usename = db.Column(db.String,db.ForeignKey('user.username'))
-#     content = db.Column(db.String,nullable=False)
 
-
+def get_data():
+    r = req.get('https://disease.sh/v3/covid-19/countries/idn')
+    return r.json()

@@ -44,17 +44,22 @@
   <div class="container container-sm bg-white">
     <div class="row">
       <h1 class="bg-dark text-center text-white">Unimal Linux Enthusiast</h1>
-      <div class="col">
-        <img class="img-fluid" src="{{url_for('static',filename='content/keep_calm.jpeg')}}" alt="Not Found">
+      <div class="col-4">
+        <ul class="list-group text-center text-bold">
+          <p class="lead text-center bg-warning">Data Covid</p>
+          <li class="list-group-item bg-dark text-white">Positif : {{covid.cases}}</li>
+          <li class="list-group-item bg-warning ">Kasus Hari ini : {{covid.todayCases}}</li>
+          <li class="list-group-item bg-success text-white">Sembuh : {{covid.recovered}}</li>
+          <li class="list-group-item bg-danger text-white"><strong>Meninggal : {{covid.deaths}}</strong></li>
+        </ul>
       </div>
-
       <div class="col">
         <div class="card " style="width: 18rem;">
           <img src="{{url_for('static',filename='content/Linus-Torvalds-2012.jpg')}}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title fw-bold">Linus Torvalds</h5>
             <p class="card-text lead">A computer is like air conditioning - it becomes useless when you open Windows</p>
-            <a href="https://linuxtorvalds.com/" class="btn btn-dark">Linus</a>
+            <a href="https://linuxtorvalds.com/" target="_blank" class="btn btn-dark">Linus</a>
           </div>
         </div>
       </div>
@@ -64,11 +69,26 @@
           <div class="card-body">
             <h5 class="card-title fw-bold">Richard Stallman</h5>
             <p class="card-text lead">I did write some code in Java once,but that was the island in Indonesia</p>
-            <a href="https://stallman.org/" class="btn btn-dark">Stallman</a>
+            <a href="https://stallman.org/" target="_blank" class="btn btn-dark">Stallman</a>
           </div>
         </div>
       </div>
+
     </div>
+    <br>
+
+    <div class="row">
+      <div class="col">
+        <h1 class="display-2">
+          Hello, World ! 
+        </h1>
+        <p class="lead">
+          hello sobat linux, disini tujuan kami membuat website ini ialah untuk
+        </p>
+      </div>
+
+    </div>
+
     <table class="table">
       <thead class="table-dark">
         <tr>
