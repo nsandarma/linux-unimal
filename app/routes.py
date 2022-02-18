@@ -20,7 +20,12 @@ def home():
     else:
         data = {'nama':'user'}
         message = json.loads(user.content)
-    return render_template("landing.html",value=data,hashing=ha,data=message,covid=get_data())
+    meninggal = f"{get_data()['deaths']:,}"
+    kasus = f"{get_data()['cases']:,}"
+    kasus_hari_ini= f"{get_data()['todayCases']:,}"
+    sembuh = f"{get_data()['recovered']:,}"
+
+    return render_template("landing.html",value=data,hashing=ha,data=message,meninggal=meninggal,kasus=kasus,kasus_hari_ini=kasus_hari_ini,sembuh=sembuh)
 
 @app.route('/login',methods=['GET','POST'])
 def login():
